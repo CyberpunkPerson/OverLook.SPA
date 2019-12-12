@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify'
-import App from './App'
+import Vue from "vue";
+import vuetify from "@plugins/vuetify";
+import App from "./App";
 // import store from '/store'
-import 'vuetify/dist/vuetify.min.css'
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
-import routers from '@router/routes.config'
+import { Api } from "@plugins/axios.config";
+import router from "@router/routes.config";
 
-Vue.use(Vuetify)
+Vue.prototype.$api = Api;
 
 new Vue({
-    el:'#app',
-    router:routers,
-    // store,
-    render: h => h(App)
-})
+  el: "#app",
+  router,
+  vuetify,
+  // store,
+  render: h => h(App)
+});

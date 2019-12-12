@@ -1,6 +1,5 @@
 <template>
-  <v-app>
-    <v-app-bar app
+<v-app-bar
       absolute
       color="light-blue lighten-1"
       dark
@@ -9,36 +8,28 @@
       scroll-target="#scrolling-techniques-2"
       :src="require('@img/toolbar-background.jpg')"
     >
+
       <v-toolbar-title>OverLook</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
       <template v-slot:extension>
-        <v-tabs align-with-title background-color="transparent">
+        <v-tabs
+          align-with-title
+          background-color="transparent"
+        >
           <v-tab to="/import">Import</v-tab>
           <v-tab to="/export">Export</v-tab>
         </v-tabs>
       </template>
-    </v-app-bar>
 
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout align-center justify-center>
-          <router-view></router-view>
-        </v-layout>
-      </v-container>
-    </v-content>
-    <v-footer></v-footer>
-  </v-app>
+    </v-app-bar>
 </template>
 
 <script>
-//import Toolbar from "@layout/toolbar/Toolbar";
-
 export default {
-  name: "App",
-  components: {},
-  data: () => ({})
+  name: "toolbar",
+
 };
 </script>
 

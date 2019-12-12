@@ -10,7 +10,8 @@ const aliases = {
     '@model': '../src/components/model',
     '@layout': '../src/components/layout',
     '@store' : '../src/store',
-    '@utils' : '../src/utils'
+    '@utils' : '../src/utils',
+    '@plugins' : '../src/plugins'
 };
 
 module.exports = {
