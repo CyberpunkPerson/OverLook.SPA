@@ -1,6 +1,19 @@
 import axios from "axios";
+import { THROW_ERROR } from "@store/actions/errors";
+import store from "@store";
 
-export const Api = axios.create({
-  //baseURL: `http://localhost:8080`,
-  baseURL: '/api/overlook'
+var api = axios.create({
+  baseURL: "http://localhost:8080/overlook"
 });
+
+api.interceptors.response.use(
+  function(response) {
+    return response;
+  },
+  function(error) {
+    store.commit(THROW_ERROR, error);
+    return Promise.reject(error);
+  }
+);
+
+export const Api = api;

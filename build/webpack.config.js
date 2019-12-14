@@ -81,7 +81,6 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      // filename: ROOT + "assets/css/style.css"
     }),
     new HtmlWebpackPlugin({
       title: "OverLook",

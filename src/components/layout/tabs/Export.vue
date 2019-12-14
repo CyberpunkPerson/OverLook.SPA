@@ -10,14 +10,9 @@
 export default {
   name: "export",
   data: () => ({}),
-//@click.prevent="exportUsers()"
-//href="/api/overlook/directory/export/users/pdf"
   methods: {
     exportUsers() {
-      window.open("/api/overlook/directory/export/users/pdf");
-      //this.$api.get("/directory/export/users/pdf").then(responce => {
-      //  console.log("SUCCESS!!");
-     // });
+      window.open("/overlook/directory/export/users/pdf");
     }
   }
 };

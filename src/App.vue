@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar app
+    <error-handler></error-handler>
+    <v-app-bar
+      app
       absolute
       color="light-blue lighten-1"
       dark
@@ -28,17 +30,21 @@
         </v-layout>
       </v-container>
     </v-content>
+
     <v-footer></v-footer>
   </v-app>
 </template>
 
 <script>
-//import Toolbar from "@layout/toolbar/Toolbar";
+import ErrorHandler from "@components/ErrorHandler";
 
 export default {
   name: "App",
-  components: {},
-  data: () => ({})
+  components: { ErrorHandler },
+  data: () => ({}),
+  errorCaptured(err, vm, info) {
+    console.error(err)
+  }
 };
 </script>
 

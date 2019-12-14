@@ -33,14 +33,20 @@ export default {
       this.$api
         .post("/directory/save", data, {
           headers: {
-            ContentType: "application/json"
-          }
+            ContentType: "application/json",
+            
+          },
+          errorHandle: false
         })
         .then(responce => {
-          console.log("SUCCESS!!");
+          console.log(responce.data);
         });
+        // .catch(ex => {
+        //   throw ex;
+        // });
+      // throw new Error("1233");
     }
-  }
+  },
 };
 </script>
 
