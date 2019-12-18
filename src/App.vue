@@ -21,7 +21,23 @@
         <v-tabs align-with-title background-color="transparent">
           <v-tab to="/import">Import</v-tab>
           <v-tab to="/export">Export</v-tab>
+          <v-tab to="/profile">Profile</v-tab>
+          <v-tab to="/user-list">User List</v-tab>
         </v-tabs>
+      </template>
+
+      <v-spacer></v-spacer>
+
+      <template v-if="!isUserAuthorized">
+        <v-btn color="black" text @click.prevent="signIn">
+          <v-icon>mdi-exit-to-app</v-icon>Sign In
+        </v-btn>
+      </template>
+
+      <template v-else>
+        <v-btn color="black" text @click.prevent="signIn">
+          <v-icon>mdi-exit-to-app</v-icon>Log Out
+        </v-btn>
       </template>
     </v-app-bar>
 
@@ -40,13 +56,30 @@
 <script>
 import ErrorHandler from "@components/ErrorHandler";
 import Authentication from "@layout/authentication/Authentication";
+import { THROW_ERROR } from "@store/actions/errors";
+import { AUTHORIZATION_REQUIRED } from "@store/actions/navigation";
 
 export default {
   name: "App",
   components: { ErrorHandler, Authentication },
   data: () => ({}),
+  computed: {
+    isUserAuthorized: {
+      get() {
+        this.$store.isUserAuthorized;
+      }
+    }
+  },
+  methods: {
+    signIn() {
+      this.$store.commit(AUTHORIZATION_REQUIRED);
+    },
+    logout() {
+      
+    }
+  },
   errorCaptured(err, vm, info) {
-    console.error(err);
+    this.$store.commit(THROW_ERROR, err);
   }
 };
 </script>

@@ -28,9 +28,6 @@ export default {
     dialog: {
       get() {
         return this.$store.getters.isExceptionDialog;
-      },
-      set() {
-        this.$store.commit(THROW_ERROR);
       }
     },
     status: {

@@ -2,6 +2,7 @@ import { AUTHORIZATION_REQUIRED } from "@store/actions/navigation";
 
 const state = {
     authDialog: false,
+    isUserAutorized:false,
 };
 
 const getters = {
