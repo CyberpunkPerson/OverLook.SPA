@@ -4,6 +4,7 @@ import App from "./App";
 import store from '@store'
 import { Api } from "@plugins/axios.config";
 import router from "@router/routes.config";
+import '@components/globals'
 
 Vue.prototype.$api = Api;
 

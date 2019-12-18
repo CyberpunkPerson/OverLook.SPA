@@ -1,10 +1,12 @@
 <template>
   <v-app>
     <error-handler></error-handler>
+    <authentication></authentication>
+
     <v-app-bar
       app
       absolute
-      color="light-blue lighten-1"
+      color="grey lighten-4"
       dark
       prominent
       shrink-on-scroll
@@ -37,13 +39,14 @@
 
 <script>
 import ErrorHandler from "@components/ErrorHandler";
+import Authentication from "@layout/authentication/Authentication";
 
 export default {
   name: "App",
-  components: { ErrorHandler },
+  components: { ErrorHandler, Authentication },
   data: () => ({}),
   errorCaptured(err, vm, info) {
-    console.error(err)
+    console.error(err);
   }
 };
 </script>

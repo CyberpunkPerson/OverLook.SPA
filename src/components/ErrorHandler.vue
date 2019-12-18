@@ -1,7 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px">
     <v-card>
-      <v-card-title class="headline">Error occured</v-card-title>
+      <v-card-title class="headline">Error</v-card-title>
       <v-card-subtitle>{{ status }}</v-card-subtitle>
 
       <v-card-text>{{ message }}</v-card-text>
