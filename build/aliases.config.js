@@ -7,7 +7,7 @@ const aliases = {
     '@scss': '../src/assets/scss',
     '@img': '../src/assets/img',
     '@base': '../src/components/base',
-    '@model': '../src/components/model',
+    '@model': '../src/model',
     '@layout': '../src/components/layout',
     '@store' : '../src/store',
     '@utils' : '../src/utils',

@@ -1,1 +1,2 @@
 export const THROW_ERROR = "THROW_ERROR";
+export const CLOSE_ERROR_DIALOG = "CLOSE_ERROR_DIALOG";

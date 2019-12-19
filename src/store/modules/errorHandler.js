@@ -1,7 +1,8 @@
 import store from "@store";
 
-import { THROW_ERROR } from "@store/actions/errors";
-import { AUTHORIZATION_REQUIRED } from "@store/actions/navigation"
+import { THROW_ERROR, CLOSE_ERROR_DIALOG } from "@store/actions/errors";
+import { AUTH_REQUIRED } from "@store/actions/navigation"
+import { AUTH_ERROR } from "@store/actions/security"
 
 const state = {
   exceptionDialog: false,
@@ -16,12 +17,19 @@ const getters = {
 const mutations = {
   [THROW_ERROR](state, error) {
     state.error = error;
+    console.error(error);
 
     if (state.error.response.status == 401) {
-      store.commit(AUTHORIZATION_REQUIRED);
-    } else {
-      state.exceptionDialog = !state.exceptionDialog;
+      store.commit(AUTH_REQUIRED);
+      return;
+    } else if (state.error.response.status == 403) {
+      store.commit(AUTH_ERROR);
     }
+
+    state.exceptionDialog = true;
+  },
+  [CLOSE_ERROR_DIALOG]() {
+    state.exceptionDialog = false;
   }
 };
 

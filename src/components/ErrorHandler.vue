@@ -8,16 +8,14 @@
       <v-card-actions>
         <v-spacer></v-spacer>
 
-        <v-btn color="black" text @click.prevent="dialog = false">
-          Close
-        </v-btn>
+        <v-btn color="black" text @click.prevent="dialog = false">Close</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
-import { THROW_ERROR } from "@store/actions/errors";
+import { CLOSE_ERROR_DIALOG } from "@store/actions/errors";
 
 export default {
   name: "error-handler",
@@ -28,6 +26,9 @@ export default {
     dialog: {
       get() {
         return this.$store.getters.isExceptionDialog;
+      },
+      set() {
+        this.$store.commit(CLOSE_ERROR_DIALOG);
       }
     },
     status: {
@@ -35,8 +36,8 @@ export default {
         return this.error ? this.error.message : "";
       }
     },
-    message:{
-      get(){
+    message: {
+      get() {
         return this.error ? this.error.response.data.exceptionMessage : "";
       }
     }

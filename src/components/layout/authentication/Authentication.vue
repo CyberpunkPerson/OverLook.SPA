@@ -29,7 +29,8 @@
 </template>
 
 <script>
-import { AUTHORIZATION_REQUIRED } from "@store/actions/navigation";
+import { AUTH_REQUIRED, CLOSE_AUTH_DIALOG } from "@store/actions/navigation";
+import { AUTH_REQUEST } from "@store/actions/security";
 import PasswordInput from "@base/PasswordInput";
 
 export default {
@@ -46,7 +47,7 @@ export default {
         return this.$store.getters.isAuthDialog;
       },
       set() {
-        this.$store.commit(AUTHORIZATION_REQUIRED);
+        this.$store.commit(CLOSE_AUTH_DIALOG);
       }
     },
     status: {
@@ -59,10 +60,13 @@ export default {
         return this.error ? this.error.response.data.exceptionMessage : "";
       }
     }
+  },
+  methods: {
+    login() {
+      const { username, password } = this;
+      this.$store.dispatch(AUTH_REQUEST, { username, password });
+    }
   }
-  // beforeUpdate() {
-  //   this.error = this.$store.getters.getErrors;
-  // }
 };
 </script>
 
