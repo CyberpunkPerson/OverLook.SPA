@@ -30,7 +30,7 @@
 
 <script>
 import { AUTH_REQUIRED, CLOSE_AUTH_DIALOG } from "@store/actions/navigation";
-import { AUTH_REQUEST } from "@store/actions/security";
+import { AUTH_REQUEST, AUTH_CHECK } from "@store/actions/security";
 import PasswordInput from "@base/PasswordInput";
 
 export default {
@@ -41,6 +41,9 @@ export default {
     username: "",
     password: ""
   }),
+  mounted() {
+     this.$store.dispatch(AUTH_CHECK);
+  },
   computed: {
     dialog: {
       get() {

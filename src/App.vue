@@ -20,9 +20,9 @@
       <template v-slot:extension>
         <v-tabs align-with-title background-color="transparent">
           <v-tab v-if="isUserAuthorized" to="/import">Import</v-tab>
-          <v-tab to="/export">Export</v-tab>
-          <v-tab to="/profile">Profile</v-tab>
-          <v-tab v-if="isUserAuthorized" to="/user-list">User List</v-tab>
+          <v-tab v-if="isUserAuthorized" to="/export">Export</v-tab>
+          <v-tab v-if="isUserAuthorized" to="/userdetails">User Details</v-tab>
+          <v-tab v-if="isUserAuthorized" to="/userdetails-list">User List</v-tab>
         </v-tabs>
       </template>
 
@@ -35,7 +35,7 @@
       </template>
 
       <template v-else>
-        <v-btn color="black" text @click.prevent="logout">
+        <v-btn color="black" text  to="/" @click.prevent="logout">
           <v-icon>mdi-exit-to-app</v-icon>Log Out
         </v-btn>
       </template>
@@ -57,6 +57,7 @@
 import ErrorHandler from "@components/ErrorHandler";
 import Authentication from "@layout/authentication/Authentication";
 import { AUTH_REQUIRED } from "@store/actions/navigation";
+import { AUTH_LOGOUT } from "@store/actions/security";
 
 export default {
   name: "App",
@@ -74,7 +75,7 @@ export default {
       this.$store.commit(AUTH_REQUIRED);
     },
     logout() {
-      console.log("Log out");
+      this.$store.dispatch(AUTH_LOGOUT);
     }
   },
   errorCaptured(err, vm, info) {
