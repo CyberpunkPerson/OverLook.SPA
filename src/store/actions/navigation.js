@@ -1,0 +1,2 @@
+export const AUTH_REQUIRED = "AUTH_REQUIRED";
+export const CLOSE_AUTH_DIALOG = "CLOSE_AUTH_DIALOG";

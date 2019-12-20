@@ -8,6 +8,7 @@
     "@mdi/js": "^4.7.95",
     "autoprefixer": "^8.6.5",
     "axios": "^0.18.0",
+    "axios-token-interceptor": "^0.2.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -48,7 +49,7 @@
   "scripts": {
     "dev": "webpack --env development --config build/webpack.config.js",
     "build": "webpack --env production --config build/webpack.config.js",
-    "wds": "nodemon --watch build/webpack.config.js --exec 'webpack-dev-server --mode development --inline --config build/webpack.config.js'"
+    "wds": "nodemon --watch build/webpack.config.js --exec \"webpack-dev-server --mode development --inline --config build/webpack.config.js\""
   },
   "author": "Andrew Belunov",
   "license": "ISC"

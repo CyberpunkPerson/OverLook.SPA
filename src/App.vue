@@ -1,10 +1,12 @@
 <template>
   <v-app>
     <error-handler></error-handler>
+    <authentication></authentication>
+
     <v-app-bar
       app
       absolute
-      color="light-blue lighten-1"
+      color="grey lighten-4"
       dark
       prominent
       shrink-on-scroll
@@ -17,9 +19,25 @@
 
       <template v-slot:extension>
         <v-tabs align-with-title background-color="transparent">
-          <v-tab to="/import">Import</v-tab>
-          <v-tab to="/export">Export</v-tab>
+          <v-tab v-if="isUserAuthorized" to="/import">Import</v-tab>
+          <v-tab v-if="isUserAuthorized" to="/export">Export</v-tab>
+          <v-tab v-if="isUserAuthorized" to="/userdetails">User Details</v-tab>
+          <v-tab v-if="isUserAuthorized" to="/userdetails-list">User List</v-tab>
         </v-tabs>
+      </template>
+
+      <v-spacer></v-spacer>
+
+      <template v-if="!isUserAuthorized">
+        <v-btn color="black" text @click.prevent="signin">
+          <v-icon>mdi-exit-to-app</v-icon>Sign In
+        </v-btn>
+      </template>
+
+      <template v-else>
+        <v-btn color="black" text  to="/" @click.prevent="logout">
+          <v-icon>mdi-exit-to-app</v-icon>Log Out
+        </v-btn>
       </template>
     </v-app-bar>
 
@@ -37,13 +55,31 @@
 
 <script>
 import ErrorHandler from "@components/ErrorHandler";
+import Authentication from "@layout/authentication/Authentication";
+import { AUTH_REQUIRED } from "@store/actions/navigation";
+import { AUTH_LOGOUT } from "@store/actions/security";
 
 export default {
   name: "App",
-  components: { ErrorHandler },
+  components: { ErrorHandler, Authentication },
   data: () => ({}),
+  computed: {
+    isUserAuthorized: {
+      get() {
+        return this.$store.getters.isUserAutorized;
+      }
+    }
+  },
+  methods: {
+    signin() {
+      this.$store.commit(AUTH_REQUIRED);
+    },
+    logout() {
+      this.$store.dispatch(AUTH_LOGOUT);
+    }
+  },
   errorCaptured(err, vm, info) {
-    console.error(err)
+    console.log(err);
   }
 };
 </script>

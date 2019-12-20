@@ -7,12 +7,22 @@
 </template>
 
 <script>
+import { Api } from "@plugins/axios.config";
+
 export default {
   name: "export",
   data: () => ({}),
   methods: {
     exportUsers() {
-      window.open("/overlook/directory/export/users/pdf");
+      Api.get("/directory/export/users/pdf").then(response => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", "file.pdf");
+        document.body.appendChild(link);
+        
+        link.click();
+      });
     }
   }
 };
